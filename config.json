@@ -4,14 +4,14 @@
     "username": "admin",
     "password": "123456"
   },
-  "platform": "bilibili2",
-  "room_display_id": "278333",
-  "chat_type": "reread",
-  "need_lang": "none",
-  "before_prompt": "请简要回复:",
-  "after_prompt": "",
-  "comment_log_type": "回答",
-  "visual_body": "xuniren",
+  "platform": "bilibili",
+  "room_display_id": "559906",
+  "chat_type": "langchain_chatglm",
+  "need_lang": "zh",
+  "before_prompt": "假如你是轴伊, 请简要回复观众的弹幕：",
+  "after_prompt": "不要进行任何额外的解释核说明。",
+  "comment_log_type": "不记录",
+  "visual_body": "其他",
   "xuniren": {
     "api_ip_port": "http://127.0.0.1:8800"
   },
@@ -26,17 +26,17 @@
     "thanks": true,
     "live2d": true,
     "audio_random_speed": true,
-    "so_vits_svc": true,
-    "ddsp_svc": true,
-    "local_qa": true,
+    "so_vits_svc": false,
+    "ddsp_svc": false,
+    "local_qa": false,
     "choose_song": true,
     "sd": true,
     "log": true,
-    "schedule": true,
+    "schedule": false,
     "database": true,
     "play_audio": true,
     "web_captions_printer": true,
-    "key_mapping": true
+    "key_mapping": false
   },
   "bilibili": {
     "login_type": "cookie",
@@ -52,8 +52,8 @@
     "proxy_port": "10809"
   },
   "read_user_name": {
-    "enable": false,
-    "voice_change": true,
+    "enable": true,
+    "voice_change": false,
     "reply_before": [
       "回复{username}",
       "{username}",
@@ -104,13 +104,13 @@
     "lowest_price": 1.0
   },
   "live2d": {
-    "enable": false,
+    "enable": true,
     "port": 12345
   },
   "openai": {
-    "api": "https://api.openai.com/v1",
+    "api": "https://oa.api2d.net/v1",
     "api_key": [
-      "替换为你的api-key"
+      "fk217368-ZytsfJQXKyIPntUfk250mw2HLHFk88nC"
     ],
     "model": "gpt-3.5-turbo"
   },
@@ -171,13 +171,13 @@
     "local_vector_embedding_model": "sebastian-hofstaetter/distilbert-dot-tas_b-b256-msmarco"
   },
   "langchain_chatglm": {
-    "api_ip_port": "http://127.0.0.1:7861",
-    "chat_type": "模型",
-    "knowledge_base_id": "ikaros",
+    "api_ip_port": "https://gpu-pod653f5742fe052167ba7c99f2-7861.node.inscode.run",
+    "chat_type": "知识库",
+    "knowledge_base_id": "joiv2",
     "history_enable": true,
     "history_max_len": 500
   },
-  "audio_synthesis_type": "genshinvoice_top",
+  "audio_synthesis_type": "vits",
   "audio_random_speed": {
     "normal": {
       "enable": false,
@@ -191,11 +191,11 @@
     }
   },
   "vits": {
-    "type": "vits",
-    "config_path": "E:\\vits-simple-api\\Model\\ikaros\\config.json",
-    "api_ip_port": "http://127.0.0.1:23456",
+    "type": "bert_vits2",
+    "config_path": "C:\\Users\\shaiuyu\\Code\\harveyTvT\\vits-simple-api\\Model\\bert_vits2\\config.json",
+    "api_ip_port": "https://gpu-pod65377539bed73738f3419194-23456.node.inscode.run",
     "id": "0",
-    "lang": "自动",
+    "lang": "中文",
     "length": "1",
     "noise": "0.33",
     "noisew": "0.4",
@@ -266,7 +266,7 @@
     "db_path": "db.sqlite3"
   },
   "chatgpt": {
-    "model": "gpt-3.5-turbo-0613",
+    "model": "gpt-3.5-turbo-16k-0613",
     "temperature": 0.9,
     "max_tokens": 2048,
     "top_p": 1.0,
@@ -297,7 +297,7 @@
   "local_qa": {
     "text": {
       "enable": true,
-      "type": "json",
+      "type": "text",
       "file_path": "data/本地问答库.json",
       "similarity": 0.8
     },
@@ -371,7 +371,7 @@
   "talk": {
     "username": "主人",
     "type": "google",
-    "continuous_talk": false,
+    "continuous_talk": true,
     "trigger_key": "Q",
     "stop_trigger_key": "S",
     "volume_threshold": 800.0,

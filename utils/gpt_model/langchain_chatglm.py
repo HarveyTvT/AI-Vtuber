@@ -53,30 +53,30 @@ class Langchain_ChatGLM:
         try:
             if self.chat_type == "模型":
                 data_json = {
-                    "question": prompt, 
+                    "question": prompt,
                     "streaming": False,
                     "history": self.history
                 }
-                url = self.api_ip_port + "/chat"
+                url = self.api_ip_port + "/chat/chat"
             elif self.chat_type == "知识库":
                 data_json = {
-                    "knowledge_base_id": self.knowledge_base_id,
-                    "question": prompt, 
+                    "knowledge_base_name": self.knowledge_base_id,
+                    "query": prompt,
                     "streaming": False,
                     "history": self.history
                 }
 
-                url = self.api_ip_port + "/local_doc_qa/local_doc_chat"
+                url = self.api_ip_port + "/chat/knowledge_base_chat"
             elif self.chat_type == "必应":
                 data_json = {
-                    "question": prompt, 
+                    "question": prompt,
                     "history": self.history
                 }
 
-                url = self.api_ip_port + "/local_doc_qa/bing_search_chat"
+                url = self.api_ip_port + "/chat/search_engin_chat"
             else:
                 data_json = {
-                    "question": prompt, 
+                    "question": prompt,
                     "streaming": False,
                     "history": self.history
                 }
@@ -86,25 +86,26 @@ class Langchain_ChatGLM:
             response.raise_for_status()  # 检查响应的状态码
 
             result = response.content
+            logging.info("返回结果：" + result.decode("utf-8"))
             ret = json.loads(result)
 
             logging.debug(ret)
-            if self.chat_type == "问答库" or self.chat_type == "必应":
-                logging.info(f'源自：{ret["source_documents"]}')
+            # if self.chat_type == "问答库" or self.chat_type == "必应":
+            #     logging.info(f'源自：{ret["source_documents"]}')
 
-            resp_content = ret['response']
+            resp_content = ret['answer']
 
             # 启用历史就给我记住！
-            if self.history_enable:
-                while True:
-                    # 获取嵌套列表中所有字符串的字符数
-                    total_chars = sum(len(string) for sublist in self.history for string in sublist)
-                    # 如果大于限定最大历史数，就剔除第一个元素
-                    if total_chars > self.history_max_len:
-                        self.history.pop(0)
-                    else:
-                        self.history.append(ret['history'][-1])
-                        break
+            # if self.history_enable:
+            #     while True:
+            #         # 获取嵌套列表中所有字符串的字符数
+            #         total_chars = sum(len(string) for sublist in self.history for string in sublist)
+            #         # 如果大于限定最大历史数，就剔除第一个元素
+            #         if total_chars > self.history_max_len:
+            #             self.history.pop(0)
+            #         else:
+            #             self.history.append(ret['history'][-1])
+            #             break
 
             return resp_content
         except Exception as e:
@@ -135,10 +136,9 @@ if __name__ == '__main__':
     if data["chat_type"] == "模型":
         logging.info(langchain_chatglm.get_resp("你可以扮演猫娘吗，每句话后面加个喵"))
         logging.info(langchain_chatglm.get_resp("早上好"))
-    elif data["chat_type"] == "知识库":  
+    elif data["chat_type"] == "知识库":
         langchain_chatglm.get_list_knowledge_base()
         logging.info(langchain_chatglm.get_resp("伊卡洛斯喜欢谁"))
     # please set BING_SUBSCRIPTION_KEY and BING_SEARCH_URL in os ENV
-    elif data["chat_type"] == "必应":  
+    elif data["chat_type"] == "必应":
         logging.info(langchain_chatglm.get_resp("伊卡洛斯是谁"))
-    

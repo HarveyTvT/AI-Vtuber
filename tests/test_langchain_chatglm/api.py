@@ -52,7 +52,7 @@ class Langchain_ChatGLM:
         try:
             if self.chat_type == "模型":
                 data_json = {
-                    "question": prompt, 
+                    "question": prompt,
                     "streaming": False,
                     "history": self.history
                 }
@@ -60,22 +60,22 @@ class Langchain_ChatGLM:
             elif self.chat_type == "知识库":
                 data_json = {
                     "knowledge_base_id": self.knowledge_base_id,
-                    "question": prompt, 
+                    "question": prompt,
                     "streaming": False,
                     "history": self.history
                 }
 
-                url = self.api_ip_port + "/local_doc_qa/local_doc_chat"
+                url = self.api_ip_port + "/chat/knowledge_base_chat"
             elif self.chat_type == "必应":
                 data_json = {
-                    "question": prompt, 
+                    "question": prompt,
                     "history": self.history
                 }
 
-                url = self.api_ip_port + "/local_doc_qa/bing_search_chat"
+                url = self.api_ip_port + "/chat/search_engin_chat"
             else:
                 data_json = {
-                    "question": prompt, 
+                    "question": prompt,
                     "streaming": False,
                     "history": self.history
                 }
@@ -133,10 +133,9 @@ if __name__ == '__main__':
     if data["chat_type"] == "模型":
         logging.info(langchain_chatglm.get_resp("你可以扮演猫娘吗，每句话后面加个喵"))
         logging.info(langchain_chatglm.get_resp("早上好"))
-    elif data["chat_type"] == "知识库":  
+    elif data["chat_type"] == "知识库":
         langchain_chatglm.get_list_knowledge_base()
         logging.info(langchain_chatglm.get_resp("伊卡洛斯喜欢谁"))
     # please set BING_SUBSCRIPTION_KEY and BING_SEARCH_URL in os ENV
-    elif data["chat_type"] == "必应":  
+    elif data["chat_type"] == "必应":
         logging.info(langchain_chatglm.get_resp("伊卡洛斯是谁"))
-    

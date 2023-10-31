@@ -53,7 +53,7 @@ class Langchain_ChatGLM:
         try:
             if self.chat_type == "模型":
                 data_json = {
-                    "question": prompt,
+                    "query": prompt,
                     "streaming": False,
                     "history": self.history
                 }

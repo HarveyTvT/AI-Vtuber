@@ -1,4 +1,5 @@
-import json, logging
+import json
+import logging
 import requests
 import traceback
 
@@ -21,8 +22,8 @@ class Langchain_ChatGLM:
 
         self.history = []
 
-
     # 获取知识库列表
+
     def get_list_knowledge_base(self):
         url = self.api_ip_port + "/local_doc_qa/list_knowledge_base"
         try:
@@ -39,7 +40,6 @@ class Langchain_ChatGLM:
         except Exception as e:
             logging.error(traceback.format_exc())
             return None
-
 
     def get_resp(self, prompt):
         """请求对应接口，获取返回值
@@ -80,20 +80,23 @@ class Langchain_ChatGLM:
                     "streaming": False,
                     "history": self.history
                 }
-                url = self.api_ip_port + "/chat"
+                url = self.api_ip_port + "/chat/chat"
 
             response = requests.post(url=url, json=data_json)
             response.raise_for_status()  # 检查响应的状态码
 
             result = response.content
             logging.info("返回结果：" + result.decode("utf-8"))
-            ret = json.loads(result)
 
-            logging.debug(ret)
+            resp_content = ''
+            if result.startswith(b'{'):
+                ret = json.loads(result)
+                resp_content = ret['answer']
+            else:
+                resp_content = result.decode("utf-8")
+
             # if self.chat_type == "问答库" or self.chat_type == "必应":
             #     logging.info(f'源自：{ret["source_documents"]}')
-
-            resp_content = ret['answer']
 
             # 启用历史就给我记住！
             # if self.history_enable:
@@ -131,7 +134,6 @@ if __name__ == '__main__':
         "history_max_len": 300
     }
     langchain_chatglm = Langchain_ChatGLM(data)
-
 
     if data["chat_type"] == "模型":
         logging.info(langchain_chatglm.get_resp("你可以扮演猫娘吗，每句话后面加个喵"))

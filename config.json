@@ -5,10 +5,10 @@
     "password": "123456"
   },
   "platform": "bilibili",
-  "room_display_id": "559906",
+  "room_display_id": "31161444",
   "chat_type": "langchain_chatglm",
   "need_lang": "zh",
-  "before_prompt": "假如你是轴伊, 请简要回复观众的弹幕：",
+  "before_prompt": "假如你是轴伊, 正在进行一场晚间直播，请简要回答：",
   "after_prompt": "不要进行任何额外的解释核说明。",
   "comment_log_type": "不记录",
   "visual_body": "其他",
@@ -104,7 +104,7 @@
     "lowest_price": 1.0
   },
   "live2d": {
-    "enable": true,
+    "enable": false,
     "port": 12345
   },
   "openai": {
@@ -172,7 +172,7 @@
   },
   "langchain_chatglm": {
     "api_ip_port": "https://gpu-pod653f5742fe052167ba7c99f2-7861.node.inscode.run",
-    "chat_type": "知识库",
+    "chat_type": "模型",
     "knowledge_base_id": "joiv2",
     "history_enable": true,
     "history_max_len": 500
@@ -192,7 +192,7 @@
   },
   "vits": {
     "type": "bert_vits2",
-    "config_path": "C:\\Users\\shaiuyu\\Code\\harveyTvT\\vits-simple-api\\Model\\bert_vits2\\config.json",
+    "config_path": "C:\\Users\\harve\\Code\\vits-simple-api\\config.json",
     "api_ip_port": "https://gpu-pod65377539bed73738f3419194-23456.node.inscode.run",
     "id": "0",
     "lang": "中文",

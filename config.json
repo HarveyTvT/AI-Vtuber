@@ -8,7 +8,7 @@
   "room_display_id": "31161444",
   "chat_type": "langchain_chatglm",
   "need_lang": "zh",
-  "before_prompt": "假如你是轴伊, 正在进行一场晚间直播，请简要回答：",
+  "before_prompt": "假如你是小轴, 正在进行一场晚间直播，请简要回答：",
   "after_prompt": "不要进行任何额外的解释核说明。",
   "comment_log_type": "不记录",
   "visual_body": "其他",
@@ -39,8 +39,8 @@
     "key_mapping": false
   },
   "bilibili": {
-    "login_type": "cookie",
-    "cookie": "buvid3=571A2DCC-B251-79CC-CE45-34EA237ABE3C50315infoc; b_nut=1689592450; i-wanna-go-back=-1; _uuid=FB8386C7-B3C8-A4DE-D5AE-38D31BADF59150245infoc; FEED_LIVE_VERSION=V8; CURRENT_FNVAL=4048; b_ut=5; header_theme_version=CLOSE; rpdid=|(umRk|YRl|k0J'uYmul|mlYR; fingerprint=1805904e43bd7d076c0a1338686ab7ff; buvid_fp_plain=undefined; buvid_fp=779874dbd839a59582fc69057f081507; LIVE_BUVID=AUTO3316918500417377; buvid4=39FE60D2-DACA-9FF9-BC17-7B974D76F06C46777-023090222-gtEiJcM77nJd4MAn4gI/uA%3D%3D; DedeUserID=679213705; DedeUserID__ckMd5=db6c84b7d736af62; sid=8gwd21bu; PVID=1; enable_web_push=DISABLE; SESSDATA=621accc1%2C1713537514%2C5d1d5*a1; bili_jct=a877f5bbb8017545e87c27d06c9258b7; innersign=0; b_lsid=1F18A114_18B643E040C; home_feed_column=4; browser_resolution=1144-996",
+    "login_type": "手机扫码-终端",
+    "cookie": "",
     "ac_time_value": "",
     "username": "",
     "password": ""
@@ -70,7 +70,7 @@
     "read_username_enable": true,
     "voice_change": true,
     "read_username_copywriting": [
-      "{username}说:",
+      "{username}说道:",
       "{username}说道:"
     ]
   },
@@ -342,23 +342,23 @@
       {
         "file_path": "data/copywriting/",
         "audio_path": "out/copywriting/",
-        "continuous_play_num": 2,
-        "max_play_time": 10.0,
         "play_list": [
           "test.wav",
           "伊卡日语介绍.wav",
           "吐槽.wav"
-        ]
+        ],
+        "continuous_play_num": 2,
+        "max_play_time": 10.0
       },
       {
         "file_path": "data/copywriting2/",
         "audio_path": "out/copywriting2/",
-        "continuous_play_num": 2,
-        "max_play_time": 3.0,
         "play_list": [
           "test.wav",
           "test2.wav"
-        ]
+        ],
+        "continuous_play_num": 2,
+        "max_play_time": 3.0
       }
     ],
     "audio_interval": 5.0,
@@ -537,15 +537,15 @@
   },
   "key_mapping": {
     "enable": true,
-    "start_cmd": "按键 ",
+    "start_cmd": "",
     "config": [
       {
         "keywords": [
-          "动作1"
+          "说道:"
         ],
         "keys": [
           "ctrlleft",
-          "1"
+          "q"
         ],
         "similarity": "1"
       },
